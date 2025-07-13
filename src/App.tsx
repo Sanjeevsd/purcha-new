@@ -217,14 +217,15 @@ function App() {
                     {partner.logo}
                   </div>
                   <div className="flex-1">
+                    <div className="mb-2">
+                      <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full font-medium capitalize">
+                        {partner.category.replace('-', ' & ')}
+                      </span>
+                    </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-1">{partner.name}</h3>
                     <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
                       <MapPin className="w-4 h-4" />
                       <span>{partner.location}</span>
-                      <div className="flex items-center space-x-1">
-                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                        <span className="font-medium">{partner.rating}</span>
-                      </div>
                     </div>
                     <div className="flex flex-wrap gap-2 mb-3">
                       {partner.certifications.slice(0, 2).map((cert, index) => (
@@ -251,21 +252,6 @@ function App() {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-4 text-center">
-                    <div>
-                      <div className="font-bold text-blue-600">{partner.yearsExperience}+</div>
-                      <div className="text-xs text-gray-600">Years Experience</div>
-                    </div>
-                    <div>
-                      <div className="font-bold text-green-600">{partner.clientsServed}</div>
-                      <div className="text-xs text-gray-600">Clients Served</div>
-                    </div>
-                    <div>
-                      <div className="font-bold text-purple-600">{partner.serviceRegions.length}</div>
-                      <div className="text-xs text-gray-600">Countries</div>
-                    </div>
-                  </div>
-
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2">Service Regions:</h4>
                     <div className="flex items-center space-x-2">
@@ -282,9 +268,6 @@ function App() {
                   </button>
                   <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
                     <Mail className="w-4 h-4" />
-                  </button>
-                  <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
-                    <Phone className="w-4 h-4" />
                   </button>
                 </div>
               </div>
