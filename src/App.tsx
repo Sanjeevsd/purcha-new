@@ -1,12 +1,322 @@
-The file appears to have some duplicate sections and missing closing brackets. Here's the corrected version with proper closures and removal of duplicates:
+import React, { useState } from 'react';
+import { Search, MapPin, Users, Zap, Package, Star, Award, Globe, Phone, Mail, ExternalLink } from 'lucide-react';
 
-[Previous content remains the same until the partner card section]
+function App() {
+  const [activeCategory, setActiveCategory] = useState('all');
 
-After the partner card section, remove the duplicate sections and add proper closing tags. The file should end with:
+  const partners = [
+    {
+      id: 1,
+      name: "Emirates Food Distribution",
+      logo: "🍽️",
+      category: "food-beverage",
+      description: "Leading food and beverage distributor serving premium hotels and restaurants across the UAE and GCC region.",
+      specialties: ["Premium Ingredients", "Halal Certified", "Cold Chain Logistics"],
+      location: "Dubai, UAE",
+      rating: 4.9,
+      yearsExperience: 15,
+      clientsServed: "500+",
+      certifications: ["HACCP", "ISO 22000", "Halal"],
+      serviceRegions: ["UAE", "Saudi Arabia", "Qatar"]
+    },
+    {
+      id: 2,
+      name: "GCC Hospitality Equipment",
+      logo: "🏨",
+      category: "furniture-equipment",
+      description: "Comprehensive supplier of commercial kitchen equipment, furniture, and hospitality solutions for luxury hotels.",
+      specialties: ["Commercial Kitchens", "Hotel Furniture", "Maintenance Services"],
+      location: "Abu Dhabi, UAE",
+      rating: 4.8,
+      yearsExperience: 12,
+      clientsServed: "300+",
+      certifications: ["CE", "ISO 9001", "Energy Star"],
+      serviceRegions: ["UAE", "Oman", "Bahrain"]
+    },
+    {
+      id: 3,
+      name: "Dubai Tech Solutions",
+      logo: "💻",
+      category: "technology",
+      description: "Cutting-edge technology solutions including POS systems, hotel management software, and digital infrastructure.",
+      specialties: ["POS Systems", "Hotel Software", "Digital Infrastructure"],
+      location: "Dubai, UAE",
+      rating: 4.7,
+      yearsExperience: 8,
+      clientsServed: "200+",
+      certifications: ["Microsoft Partner", "Oracle Certified", "AWS Partner"],
+      serviceRegions: ["UAE", "Kuwait", "Qatar"]
+    },
+    {
+      id: 4,
+      name: "Arabian Cleaning Supplies",
+      logo: "🧽",
+      category: "non-food",
+      description: "Eco-friendly cleaning and maintenance supplies for hotels, restaurants, and hospitality businesses.",
+      specialties: ["Eco-Friendly Products", "Bulk Supply", "Training Programs"],
+      location: "Sharjah, UAE",
+      rating: 4.6,
+      yearsExperience: 10,
+      clientsServed: "400+",
+      certifications: ["Green Seal", "EPA Certified", "ISO 14001"],
+      serviceRegions: ["UAE", "Saudi Arabia"]
+    }
+  ];
 
-```jsx
+  const categories = [
+    { id: 'all', name: 'All Partners', count: partners.length },
+    { id: 'food-beverage', name: 'Food & Beverage', count: partners.filter(p => p.category === 'food-beverage').length },
+    { id: 'furniture-equipment', name: 'Equipment', count: partners.filter(p => p.category === 'furniture-equipment').length },
+    { id: 'technology', name: 'Technology', count: partners.filter(p => p.category === 'technology').length },
+    { id: 'non-food', name: 'Non-Food', count: partners.filter(p => p.category === 'non-food').length }
+  ];
+
+  const filteredPartners = activeCategory === 'all' 
+    ? partners 
+    : partners.filter(partner => partner.category === activeCategory);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      {/* Header */}
+      <header className="bg-white shadow-sm border-b border-gray-200">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center space-x-3">
+              <Package className="w-8 h-8 text-blue-600" />
+              <span className="text-2xl font-bold text-gray-900">Purchasync</span>
+            </div>
+            <nav className="hidden md:flex space-x-8">
+              <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Suppliers</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">Categories</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">RFQ</a>
+              <a href="#" className="text-gray-700 hover:text-blue-600 font-medium">About</a>
+            </nav>
+            <div className="flex space-x-3">
+              <button className="px-4 py-2 text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors">
+                Sign In
+              </button>
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                Join Now
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="w-full px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+        {/* Hero Section */}
+        <div className="text-center space-y-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+            UAE's Premier <span className="text-blue-600">B2B Marketplace</span><br />
+            for Hospitality Procurement
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Connect with verified suppliers and buyers across the UAE and GCC region. 
+            Streamline your hospitality procurement with our comprehensive platform.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button className="px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-colors font-semibold text-lg">
+              Find Suppliers
+            </button>
+            <button className="px-8 py-4 border-2 border-blue-600 text-blue-600 rounded-xl hover:bg-blue-50 transition-colors font-semibold text-lg">
+              Become a Supplier
+            </button>
+          </div>
+        </div>
+
+        {/* Search Section */}
+        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="flex-1 relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Search for products, suppliers, or services..."
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            <div className="relative">
+              <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <select className="pl-10 pr-8 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white">
+                <option>Dubai, UAE</option>
+                <option>Abu Dhabi, UAE</option>
+                <option>Sharjah, UAE</option>
+                <option>Riyadh, Saudi Arabia</option>
+                <option>Doha, Qatar</option>
+              </select>
+            </div>
+            <button className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+              Search
+            </button>
+          </div>
+        </div>
+
+        {/* SEO Content Section */}
+        <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+          <div className="text-center space-y-4">
+            <h2 className="text-3xl font-bold">UAE & GCC Hospitality Procurement Hub</h2>
+            <p className="text-xl opacity-90 max-w-4xl mx-auto">
+              Discover premium suppliers for hotels, restaurants, and hospitality businesses across Dubai, Abu Dhabi, 
+              Riyadh, Doha, and the entire GCC region. From food & beverage to equipment and technology solutions.
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold">500+</div>
+                <div className="text-sm opacity-80">Verified Suppliers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">1000+</div>
+                <div className="text-sm opacity-80">Active Buyers</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">50M+</div>
+                <div className="text-sm opacity-80">AED in Transactions</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold">6</div>
+                <div className="text-sm opacity-80">GCC Countries</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Featured Partners Section */}
+        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Partners</h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Discover our verified suppliers and partners across the UAE and GCC region. 
+              These trusted businesses serve the hospitality industry with excellence and reliability.
+            </p>
+          </div>
+
+          {/* Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`px-6 py-3 rounded-full font-medium transition-all ${
+                  activeCategory === category.id
+                    ? 'bg-blue-600 text-white shadow-lg'
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                }`}
+              >
+                {category.name} ({category.count})
+              </button>
+            ))}
+          </div>
+
+          {/* Partners Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {filteredPartners.map((partner) => (
+              <div key={partner.id} className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all duration-300 group">
+                <div className="flex items-start space-x-4 mb-4">
+                  <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                    {partner.logo}
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">{partner.name}</h3>
+                    <div className="flex items-center space-x-2 text-sm text-gray-600 mb-2">
+                      <MapPin className="w-4 h-4" />
+                      <span>{partner.location}</span>
+                      <div className="flex items-center space-x-1">
+                        <Star className="w-4 h-4 text-yellow-400 fill-current" />
+                        <span className="font-medium">{partner.rating}</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                      {partner.certifications.slice(0, 2).map((cert, index) => (
+                        <span key={index} className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full font-medium">
+                          <Award className="w-3 h-3 inline mr-1" />
+                          {cert}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-gray-700 mb-4 leading-relaxed">{partner.description}</p>
+
+                <div className="space-y-3 mb-4">
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Specialties:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {partner.specialties.map((specialty, index) => (
+                        <span key={index} className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">
+                          {specialty}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <div className="font-bold text-blue-600">{partner.yearsExperience}+</div>
+                      <div className="text-xs text-gray-600">Years Experience</div>
+                    </div>
+                    <div>
+                      <div className="font-bold text-green-600">{partner.clientsServed}</div>
+                      <div className="text-xs text-gray-600">Clients Served</div>
+                    </div>
+                    <div>
+                      <div className="font-bold text-purple-600">{partner.serviceRegions.length}</div>
+                      <div className="text-xs text-gray-600">Countries</div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Service Regions:</h4>
+                    <div className="flex items-center space-x-2">
+                      <Globe className="w-4 h-4 text-gray-500" />
+                      <span className="text-sm text-gray-600">{partner.serviceRegions.join(', ')}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex space-x-3">
+                  <button className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium">
+                    <ExternalLink className="w-4 h-4 inline mr-2" />
+                    View Profile
+                  </button>
+                  <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                    <Mail className="w-4 h-4" />
+                  </button>
+                  <button className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                    <Phone className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             ))}
+          </div>
+
+          {/* Partner Success Stories */}
+          <div className="mt-12 bg-gradient-to-r from-green-50 to-blue-50 rounded-xl p-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">Partner Success Stories</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="text-2xl font-bold text-green-600 mb-2">40% Cost Reduction</div>
+                <p className="text-sm text-gray-600">Average savings achieved by hotels using our platform</p>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-blue-600 mb-2">72 Hours</div>
+                <p className="text-sm text-gray-600">Average time to connect with qualified suppliers</p>
+              </div>
+              <div className="text-center">
+                <div className="text-2xl font-bold text-purple-600 mb-2">98% Satisfaction</div>
+                <p className="text-sm text-gray-600">Partner satisfaction rate across all categories</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action for Partners */}
+          <div className="mt-8 text-center bg-gray-50 rounded-xl p-6">
+            <h3 className="text-xl font-bold text-gray-900 mb-2">Become a Featured Partner</h3>
+            <p className="text-gray-600 mb-4">Join our network of verified suppliers and reach thousands of hospitality businesses across the GCC.</p>
+            <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold">
+              Apply for Partnership
+            </button>
           </div>
         </div>
 
@@ -87,4 +397,3 @@ After the partner card section, remove the duplicate sections and add proper clo
 }
 
 export default App;
-```
