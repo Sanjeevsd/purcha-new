@@ -209,7 +209,7 @@ function App() {
           </div>
 
           {/* Partners Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredPartners.map((partner) => (
               <div key={partner.id} className="bg-gradient-to-br from-white to-gray-50 rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all duration-300 group">
                 <div className="flex items-start space-x-4 mb-4">
